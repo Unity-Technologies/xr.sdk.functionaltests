@@ -24,7 +24,7 @@ public class RenderingChecks : XrFunctionalTestBase
     public override void SetUp()
     {
         base.SetUp();
-        testMat = new Material(Resources.Load("Materials/YFlipColorMesh", typeof(Material)) as Material);
+        testMat = new Material(Resources.Load("Packages/xr.sdk.functionaltests/Materials/YFlipColorMesh", typeof(Material)) as Material);
         currentState = States.MSAA_and_HDR;
 
         colorScreen = GameObject.CreatePrimitive(PrimitiveType.Quad);
@@ -50,7 +50,7 @@ public class RenderingChecks : XrFunctionalTestBase
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
         go.transform.position = new Vector3(0, 0, 10);
         ParticleSystem particles = go.AddComponent<ParticleSystem>();
-        go.GetComponent<ParticleSystemRenderer>().material = Resources.Load<Material>("Materials/Particle");
+        go.GetComponent<ParticleSystemRenderer>().material = Resources.Load<Material>("Packages/xr.sdk.functionaltests/Materials/Particle");
         Assert.IsNotNull(go.GetComponent<ParticleSystemRenderer>().material);
         particles.Play();
         yield return SkipFrame(100);
