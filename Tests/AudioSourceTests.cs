@@ -17,7 +17,7 @@ public class AudioSourceTests : XrFunctionalTestBase
         base.SetUp();
         TestCubeSetup(TestCubesConfig.TestCube);
         Cube.AddComponent<AudioSource>();
-        Cube.GetComponent<AudioSource>().clip = Resources.Load("Packages/xr.sdk.functionaltests/Audio/FOA_speech_ambiX", typeof(AudioClip)) as AudioClip;
+        Cube.GetComponent<AudioSource>().clip = Resources.Load("Audio/FOA_speech_ambiX", typeof(AudioClip)) as AudioClip;
 
         audioSource = Cube.GetComponent<AudioSource>();
         Camera.AddComponent<AudioListener>();
