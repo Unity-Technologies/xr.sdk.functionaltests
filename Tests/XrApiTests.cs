@@ -27,14 +27,10 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsTrue(displays.Count > 0, "XR Device is not present");
     }
 
-    [UnityPlatform(exclude = new[] { RuntimePlatform.Android, RuntimePlatform.IPhonePlayer })]
+    [UnityPlatform(exclude = new[] { RuntimePlatform.IPhonePlayer })]
     [Test]
     public void VerifyXRDevice_userPresence_isPresent()
     {
-        XRGeneralSettings xrGeneralSettings = XRGeneralSettings.Instance;
-        XRInputSubsystem inputs = xrGeneralSettings.Manager.activeLoader.GetLoadedSubsystem<XRInputSubsystem>();
-        var expUserPresenceState = UserPresenceState.Present;
-
         var mockHmd = "MockHMD";
 
         if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
@@ -45,25 +41,14 @@ public class XrApiTests : XrFunctionalTestBase
         }
         else
         {
-            List<InputDevice> devices = new List<InputDevice>();
-            var userPresenceState = UserPresenceState.Unknown;
-            inputs.TryGetInputDevices(devices);
-            foreach( var device in devices )
-            {
-                if ((device.characteristics & InputDeviceCharacteristics.HeadMounted) == InputDeviceCharacteristics.HeadMounted)
-                {
-                    var userPresence = new InputFeatureUsage<bool>("UserPresence");
-                    if( device.TryGetFeatureValue(userPresence, out bool value) == true )
-                    {
-                        userPresenceState = value == true ? UserPresenceState.Present : UserPresenceState.NotPresent;
-                    }
-                    else if(userPresenceState != UserPresenceState.Present)
-                    {
-                        userPresenceState = UserPresenceState.Unsupported;
-                    }
-                }
-            }
-            Assert.AreEqual(userPresenceState, expUserPresenceState, string.Format("Not mobile platform. Expected userPresenceState to be {0}, but is {1}.", expUserPresenceState, userPresenceState));
+            var device = InputDevices.GetDeviceAtXRNode(XRNode.Head);
+            Assert.IsTrue(device.isValid, "The userPresence is UnSupported on this device. Expected head device is InValid.");
+#if UNITY_2019_3_OR_NEWER
+            Assert.IsTrue(device.TryGetFeatureValue(CommonUsages.userPresence, out bool value), "The userPresence was not found or is Unknown on the head device");
+#else
+            Assert.IsTrue(device.TryGetFeatureValue(new InputFeatureUsage<bool>("UserPresence"), out bool value), "The userPresence is Unknown on the head device");
+#endif
+            Assert.IsTrue(value, "userPresence is Not Present on head device.");
         }
     }
 
