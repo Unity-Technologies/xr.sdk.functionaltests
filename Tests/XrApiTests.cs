@@ -16,7 +16,7 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsFalse(Application.isMobilePlatform, "Exptect Application.isMobilePlatform == false, but is true ");
 #endif
     }
-    
+
     [Test]
     public void VerifyXrDevice_IsPresent()
     {
@@ -31,7 +31,7 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyXRDevice_userPresence_isPresent()
     {
-        var mockHmd = "MockHMD";
+        var mockHmd = "MockHMDXRSDK";
 
         if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
         {
@@ -83,8 +83,18 @@ public class XrApiTests : XrFunctionalTestBase
     [Test]
     public void VerifyRefreshRateGreaterThan0()
     {
-        AssertNotUsingEmulation();
-        Assert.True(XRDevice.refreshRate > 0, "Expected XRDevice.refreshRate > 0, but is {0}", XRDevice.refreshRate);
+        var mockHmd = "MockHMDXRSDK";
+        if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
+        {
+            var reasonString = Settings.EnabledXrTarget == mockHmd ? $"EnabledXrTarget == {mockHmd}" : "Test is running in the Editor";
+
+            Assert.Ignore("{0}: XRDevice.refreshRate will always be 0. Ignoring", reasonString);
+        }
+        else
+        {
+            AssertNotUsingEmulation();
+            Assert.True(XRDevice.refreshRate > 0, "Expected XRDevice.refreshRate > 0, but is {0}", XRDevice.refreshRate);
+        }
     }
 
     [Test]

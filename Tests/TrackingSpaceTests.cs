@@ -11,9 +11,13 @@ public class TrackingSpaceTests : XrFunctionalTestBase
     {
         yield return SkipFrame(2);
 
+#if MOCKHMD_SDK
+        var trackingSpace = XRDevice.GetTrackingSpaceType();
+        Assert.IsNotNull(trackingSpace, "Tracking space is not reading correctly");
+#else
         var inputsystems = XRGeneralSettings.Instance.Manager.activeLoader.GetLoadedSubsystem<XRInputSubsystem>();
         var originMode = inputsystems.GetTrackingOriginMode();
-
         Assert.AreNotEqual(TrackingOriginModeFlags.Unknown, originMode, "Tracking space is not reading correctly");
+#endif
     }
 }

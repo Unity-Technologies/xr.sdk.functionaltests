@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if !MOCKHMD_SDK
+using UnityEngine;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
@@ -80,3 +81,4 @@ internal class XrNodesTests : XrFunctionalTestBase
         Debug.Log("Node Removed : " + obj.nodeType);
     }
 }
+#endif
