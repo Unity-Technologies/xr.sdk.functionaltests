@@ -2,6 +2,6 @@
     "name": "xr.sdk.functionaltests",
     "displayName": "Functional Tests for xr.sdk",
     "version": "0.1.0-preview",
-    "unity": "2019.3",
+    "unity": "2019.4",
     "description": "Functional Tests for xr.sdk"
   }
