@@ -102,12 +102,25 @@ public class CameraTests : XrFunctionalTestBase
         var scaleIncrement = 0.1f;
         var scaleLimit = 2f;
 
-        do 
-        {
-            
-            scale = scale + scaleIncrement;
+#if URP_GRAPHICS
+        var rpAsset = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
+        var urpAsset = (UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset)rpAsset;
+#endif
 
+        do 
+        {    
+            scale += scaleIncrement;
+
+            // I guess because of float math, incrementing the scale was also adding just a little bit more 
+            // when 1.0 was reached the value was 1.000000012 and it was too much for the AreEqual assert.
+            // so round off the extra bit.
+            scale = (float)Math.Round((double)scale, 3);
+
+#if URP_GRAPHICS
+            urpAsset.renderScale = scale;
+#else
             XRSettings.eyeTextureResolutionScale = scale;
+#endif
 
             yield return SkipFrame(DefaultFrameSkipCount);
 
