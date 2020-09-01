@@ -32,6 +32,8 @@ public class XrApiTests : XrFunctionalTestBase
     public void VerifyXRDevice_userPresence_isPresent()
     {
         var mockHmd = "MockHMDXRSDK";
+        
+        Debug.Log("Settings.EnabledXrTarget is " + Settings.EnabledXrTarget);
 
         if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
         {
