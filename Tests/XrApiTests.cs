@@ -28,12 +28,15 @@ public class XrApiTests : XrFunctionalTestBase
     }
 
     [UnityPlatform(exclude = new[] { RuntimePlatform.IPhonePlayer })]
-    [Test]
+    [UnityTest]
     public void VerifyXRDevice_userPresence_isPresent()
     {
         var mockHmd = "MockHMDXRSDK";
         
         Debug.Log("Settings.EnabledXrTarget is " + Settings.EnabledXrTarget);
+        
+        for (int i = 0; i < 10; i++)
+            yield return null;
 
         if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
         {
