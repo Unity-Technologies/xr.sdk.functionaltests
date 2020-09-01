@@ -35,6 +35,7 @@ public class XrApiTests : XrFunctionalTestBase
         
         Debug.Log("Settings.EnabledXrTarget is " + Settings.EnabledXrTarget);
         
+        // Some platforms need time to warm up
         for (int i = 0; i < 10; i++)
             yield return null;
 
