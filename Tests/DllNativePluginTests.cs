@@ -64,6 +64,13 @@ public class DllNativePluginTests : XrFunctionalTestBase
         // before we determine if they are loaded?
         sceneObjectsLoaded = true;
     }
+    
+    [Test]
+    public void VerifySceneObjectsLoaded()
+    {
+        Assert.IsTrue(sceneObjectsLoaded, "Scene Objects was not created");
+    }
+
 #if !WMR_SDK
     //[Ignore("mainTexture is coming back as null from material. I think the UseRenderingPlugin.Start method where the texture is assigned is not being called. Need to investigate.")]
     [UnityTest]
@@ -81,14 +88,6 @@ public class DllNativePluginTests : XrFunctionalTestBase
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }
 #endif
-
-    // TODO: what is this test checking?
-    [UnityTest]
-    public IEnumerator VerifyRenderingFps()
-    {
-        yield return SkipFrame(2);
-        Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
-    }
 
     private bool IsPlaneRendering()
     {
