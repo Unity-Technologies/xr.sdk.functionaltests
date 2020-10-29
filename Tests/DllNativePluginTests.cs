@@ -71,8 +71,8 @@ public class DllNativePluginTests : XrFunctionalTestBase
         Assert.IsTrue(sceneObjectsLoaded, "Scene Objects was not created");
     }
 
-#if !WMR_SDK
-    //[Ignore("mainTexture is coming back as null from material. I think the UseRenderingPlugin.Start method where the texture is assigned is not being called. Need to investigate.")]
+    // NOTE: Skipping on WSA because cannot find RenderingPlugin for UWP
+    [UnityPlatform(exclude = new[] {RuntimePlatform.WSAPlayerX64})]
     [UnityTest]
     public IEnumerator VerifyIsPlaneRendering()
     {
@@ -80,14 +80,13 @@ public class DllNativePluginTests : XrFunctionalTestBase
         Assert.IsTrue(IsPlaneRendering(), "Image rendering couldn't be found");
     }
 
-    // TODO: what is this test checking?
-    [UnityTest]
+    // NOTE: Skipping on WSA because cannot find RenderingPlugin for UWP
+    [UnityPlatform(exclude = new[] {RuntimePlatform.WSAPlayerX64})]
     public IEnumerator VerifyRenderingFps()
     {
         yield return SkipFrame(2);
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }
-#endif
 
     private bool IsPlaneRendering()
     {
