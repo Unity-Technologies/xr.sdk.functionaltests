@@ -80,8 +80,10 @@ public class DllNativePluginTests : XrFunctionalTestBase
         Assert.IsTrue(IsPlaneRendering(), "Image rendering couldn't be found");
     }
 
+    // TODO: what is this test checking?
     // NOTE: Skipping on WSA because cannot find RenderingPlugin for UWP
     [UnityPlatform(exclude = new[] {RuntimePlatform.WSAPlayerX64})]
+    [UnityTest]
     public IEnumerator VerifyRenderingFps()
     {
         yield return SkipFrame(2);
