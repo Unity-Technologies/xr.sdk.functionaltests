@@ -86,9 +86,10 @@ public class XrApiTests : XrFunctionalTestBase
     public void VerifyRefreshRateGreaterThan0()
     {
         var mockHmd = "MockHMDXRSDK";
-        if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
+        var wmrHmd = "WindowsMRXRSDK";
+        if (Settings.EnabledXrTarget == mockHmd || Settings.EnabledXrTarget == wmrHmd || Application.isEditor)
         {
-            var reasonString = Settings.EnabledXrTarget == mockHmd ? $"EnabledXrTarget == {mockHmd}" : "Test is running in the Editor";
+            var reasonString = Application.isEditor ? "Test is running in the Editor" : $"EnabledXrTarget == {Settings.EnabledXrTarget}";
 
             Assert.Ignore("{0}: XRDevice.refreshRate will always be 0. Ignoring", reasonString);
         }
