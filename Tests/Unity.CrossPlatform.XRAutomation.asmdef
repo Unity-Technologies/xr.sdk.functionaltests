@@ -25,6 +25,21 @@
             "name": "com.unity.render-pipelines.universal",
             "expression": "0.0.1",
             "define": "URP_GRAPHICS"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "0.0.1",
+            "define": "OCULUS_SDK"
+        },
+        {
+            "name": "com.unity.xr.mock-hmd",
+            "expression: "0.0.1",
+            "define": "MOCKHMD_SDK"
+        },
+        {
+            "name": "com.unity.xr.windowsmr",
+            "expression: "0.0.1",
+            "define": "WMR_SDK"
         }
     ],
     "noEngineReferences": false
