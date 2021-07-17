@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using com.unity.xr.test.runtimesettings;
+using com.unity.test.metadatamanager;
 using NUnit.Framework;
 #if UNITY_EDITOR
 using UnityEditor;

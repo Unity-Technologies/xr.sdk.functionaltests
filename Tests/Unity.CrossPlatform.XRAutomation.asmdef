@@ -5,7 +5,7 @@
         "UnityEngine.SpatialTracking",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "com.unity.xr.tests.runtimesettings",
+        "com.unity.test.metadata-manager",
         "Unity.XR.Management",
         "Unity.RenderPipelines.Universal.Runtime"
     ],
