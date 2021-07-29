@@ -39,7 +39,7 @@ public class DllNativePluginTests : XrFunctionalTestBase
     {
         Object.Destroy(renderPlane);
         Object.Destroy(baseSphere);
-        Object.Destroy(spotLight);
+        Object.Destroy(spotLight.gameObject);
 
         if (GameObject.Find("Spotlight(Clone)"))
         {
