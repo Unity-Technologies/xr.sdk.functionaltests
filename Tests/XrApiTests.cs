@@ -3,7 +3,9 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
+#if XR_SDK
 using UnityEngine.XR.Management;
+#endif //XR_SDK
 
 public class XrApiTests : XrFunctionalTestBase
 {
@@ -14,24 +16,34 @@ public class XrApiTests : XrFunctionalTestBase
         Assert.IsTrue(Application.isMobilePlatform, "Exptect Application.isMobilePlatform == true, but is false ");
 #else
         Assert.IsFalse(Application.isMobilePlatform, "Exptect Application.isMobilePlatform == false, but is true ");
-#endif
+#endif //PLATFORM_IOS || PLATFORM_ANDROID
     }
 
+#if !UNITY_EDITOR
     [Test]
     public void VerifyXrDevice_IsPresent()
     {
+#if XR_SDK
         List<XRDisplaySubsystem> displays = new List<XRDisplaySubsystem>();
         SubsystemManager.GetInstances(displays);
 
         AssertNotUsingEmulation();
         Assert.IsTrue(displays.Count > 0, "XR Device is not present");
+#else
+        Assert.IsTrue(XRDevice.isPresent, "XR Device is not present");
+#endif //XR_SDK
     }
+#endif //!UNITY_EDITOR
 
     [UnityPlatform(exclude = new[] { RuntimePlatform.IPhonePlayer })]
     [Test]
     public void VerifyXRDevice_userPresence_isPresent()
     {
+#if XR_SDK
         var mockHmd = "MockHMDXRSDK";
+#else
+        var mockHmd = "MockHMD";
+#endif //XR_SDK
         
         Debug.Log("Settings.EnabledXrTarget is " + Settings.EnabledXrTarget);
 
@@ -43,14 +55,18 @@ public class XrApiTests : XrFunctionalTestBase
         }
         else
         {
+#if  XR_SDK
             var device = InputDevices.GetDeviceAtXRNode(XRNode.Head);
             Assert.IsTrue(device.isValid, "The userPresence is UnSupported on this device. Expected head device is InValid.");
-#if UNITY_2019_3_OR_NEWER
+#if UNITY_2019_3_OR_NEWER 
             Assert.IsTrue(device.TryGetFeatureValue(CommonUsages.userPresence, out bool value), "The userPresence was not found or is Unknown on the head device");
 #else
             Assert.IsTrue(device.TryGetFeatureValue(new InputFeatureUsage<bool>("UserPresence"), out bool value), "The userPresence is Unknown on the head device");
-#endif
+#endif //UNITY_2019_3_OR_NEWER 
             Assert.IsTrue(value, "userPresence is Not Present on head device.");
+#else
+            Assert.AreEqual(XRDevice.userPresence, UserPresenceState.Present, string.Format("Not mobile platform. Expected XRDevice.userPresence to be {0}, but is {1}.", UserPresenceState.Present, XRDevice.userPresence));
+#endif //XR_SDK
         }
     }
 
@@ -86,7 +102,7 @@ public class XrApiTests : XrFunctionalTestBase
     public void VerifyRefreshRateGreaterThan0()
     {
         var mockHmd = "MockHMDXRSDK";
-        var wmrHmd = "WindowsMRXRSDK";
+        var wmrHmd = "WMRXRSDK";
         if (Settings.EnabledXrTarget == mockHmd || Settings.EnabledXrTarget == wmrHmd || Application.isEditor)
         {
             var reasonString = Application.isEditor ? "Test is running in the Editor" : $"EnabledXrTarget == {Settings.EnabledXrTarget}";
@@ -146,7 +162,7 @@ public class XrApiTests : XrFunctionalTestBase
 
         Assert.IsTrue(actStereoRenderingMode.Contains(expStereoRenderingMode), $"Expected StereoRenderMode to contain {expStereoRenderingMode} but it doesn't. Actual StereoRenderMode is: {actStereoRenderingMode}");
     }
-#endif
+#endif //!XR_SDK
 }
 
 

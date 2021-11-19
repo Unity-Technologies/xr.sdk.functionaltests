@@ -5,6 +5,8 @@
         "UnityEngine.SpatialTracking",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
+        "Unity.XR.WindowsMR",
+        "Unity.WindowsMRAutomation",
         "com.unity.test.metadata-manager",
         "Unity.XR.Management",
         "Unity.RenderPipelines.Universal.Runtime"
@@ -26,6 +28,11 @@
             "expression": "0.0.1",
             "define": "URP_GRAPHICS"
         },
+	{
+            "name": "com.unity.xr.management",
+            "expression": "0.0.1",
+            "define": "XR_SDK"
+	},
         {
             "name": "com.unity.xr.oculus",
             "expression": "0.0.1",
