@@ -32,6 +32,7 @@ public class CameraTests : XrFunctionalTestBase
     }
 
     [UnityTest]
+	[Ignore("Waiting for a fix from Oculus, will re-enable 1-14-2022", Until = "2022-01-14 12:00:00Z")]
     public IEnumerator VerifyRefreshRate()
     {
         AssertNotUsingEmulation();
