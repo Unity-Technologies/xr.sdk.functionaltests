@@ -32,7 +32,7 @@ public class CameraTests : XrFunctionalTestBase
     }
 
     [UnityTest]
-    [Ignore("XRQA-637,Disabling Until 8am 4-15-22", Until = "2022-04-15 16:00:00Z")]
+    [Ignore("XRQA-637,Disabling Until 8am 5-24-22", Until = "2022-05-24 16:00:00Z")]
     public IEnumerator VerifyRefreshRate()
     {
         AssertNotUsingEmulation();
