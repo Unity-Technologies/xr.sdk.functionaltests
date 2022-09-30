@@ -60,7 +60,7 @@ public class PhysicsTests : XrFunctionalTestBase
                 }
             }
 
-            yield return SkipFrame(100);
+            yield return null;
 
             Ray ray = new Ray(xrCenterNodePos, Camera.GetComponent<Camera>().transform.forward);
             Physics.Raycast(ray, 10f);
