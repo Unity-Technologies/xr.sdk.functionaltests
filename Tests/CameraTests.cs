@@ -1,8 +1,11 @@
+using System.Runtime.InteropServices;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 #if !PLATFORM_IOS && !PLATFORM_ANDROID
 using System.IO;
@@ -32,8 +35,7 @@ public class CameraTests : XrFunctionalTestBase
     }
 
     [UnityTest]
-    [Ignore("XRQA-637,Disabling Until 8am 5-24-22", Until = "2022-05-24 16:00:00Z")]
-    public IEnumerator VerifyRefreshRate()
+    public IEnumerator VerifyXRDeviceRefreshRate()
     {
         AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
@@ -46,6 +48,32 @@ public class CameraTests : XrFunctionalTestBase
         Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
 #else
         Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
+#endif
+    }
+
+    [UnityTest]
+    public IEnumerator VerifyXRDisplaySubsystemRefreshRate()
+    {
+        AssertNotUsingEmulation();
+        yield return SkipFrame(DefaultFrameSkipCount);
+
+        List<XRDisplaySubsystem> instances = new List<XRDisplaySubsystem>();
+        SubsystemManager.GetInstances<XRDisplaySubsystem>(instances); 
+
+        if(instances.Count <= 0)
+            Assert.Ignore("Couldnt find XRDisplay Subsystem");
+
+        float rate = 0;
+        var gotrate = instances[0].TryGetDisplayRefreshRate(out rate);
+
+        Assert.IsTrue(gotrate);
+
+#if MOCKHMD_SDK || WMR_SDK
+        Assert.Ignore("{0}: XRDevice.refreshRate will always be 0. Ignoring", "Platform = MOCKHMD_SDK || WMR_SDK");
+#elif PLATFORM_IOS || PLATFORM_ANDROID || (UNITY_METRO && UNITY_EDITOR)
+        Assert.GreaterOrEqual(rate, 60, "Refresh rate returned to lower than expected");
+#else
+        Assert.GreaterOrEqual(rate, 89, "Refresh rate returned to lower than expected");
 #endif
     }
 
