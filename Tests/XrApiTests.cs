@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -36,15 +37,17 @@ public class XrApiTests : XrFunctionalTestBase
 #endif //!UNITY_EDITOR
 
     [UnityPlatform(exclude = new[] { RuntimePlatform.IPhonePlayer })]
-    [Test]
-    public void VerifyXRDevice_userPresence_isPresent()
+    [UnityTest]
+    public IEnumerator VerifyXRDevice_userPresence_isPresent()
     {
 #if XR_SDK
         var mockHmd = "MockHMDXRSDK";
 #else
         var mockHmd = "MockHMD";
 #endif //XR_SDK
-        
+        //Allow for warmup period since app may be rendering but api isnt ready
+        yield return new WaitForSeconds(1);
+
         Debug.Log("Settings.EnabledXrTarget is " + Settings.EnabledXrTarget);
 
         if (Settings.EnabledXrTarget == mockHmd || Application.isEditor)
