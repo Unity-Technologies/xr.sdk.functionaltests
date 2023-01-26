@@ -64,13 +64,13 @@ public class CameraTests : XrFunctionalTestBase
         float rate = 0;
         var gotrate = instances[0].TryGetDisplayRefreshRate(out rate);
 
-        Assert.IsTrue(gotrate);
-
 #if MOCKHMD_SDK || WMR_SDK
-        Assert.Ignore("{0}: XRDevice.refreshRate will always be 0. Ignoring", "Platform = MOCKHMD_SDK || WMR_SDK");
+        Assert.Ignore("{0}: TryGetDisplayRefreshRate will always be 0. Ignoring", "Platform = MOCKHMD_SDK || WMR_SDK");
 #elif PLATFORM_IOS || PLATFORM_ANDROID || (UNITY_METRO && UNITY_EDITOR)
+        Assert.IsTrue(gotrate);
         Assert.GreaterOrEqual(rate, 60, "Refresh rate returned to lower than expected");
 #else
+        Assert.IsTrue(gotrate);
         Assert.GreaterOrEqual(rate, 89, "Refresh rate returned to lower than expected");
 #endif
     }
