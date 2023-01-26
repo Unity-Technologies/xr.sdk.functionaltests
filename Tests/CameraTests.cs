@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.TestTools;
@@ -42,9 +40,13 @@ public class CameraTests : XrFunctionalTestBase
 
         var refreshRate = XRDevice.refreshRate;
 
-        Debug.Log(refreshRate);
+#if MOCKHMD_SDK || WMR_SDK
+        Assert.Ignore("{0}: XRDevice.refreshRate will always be 0. Ignoring", "Platform = MOCKHMD_SDK || WMR_SDK");
+#elif PLATFORM_IOS || PLATFORM_ANDROID || (UNITY_METRO && UNITY_EDITOR)
+        Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
+#else
         Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
-
+#endif
     }
 
     [UnityTest]
@@ -63,10 +65,14 @@ public class CameraTests : XrFunctionalTestBase
         var gotrate = instances[0].TryGetDisplayRefreshRate(out rate);
 
         Assert.IsTrue(gotrate);
-        Debug.Log(rate);
 
+#if MOCKHMD_SDK || WMR_SDK
+        Assert.Ignore("{0}: XRDevice.refreshRate will always be 0. Ignoring", "Platform = MOCKHMD_SDK || WMR_SDK");
+#elif PLATFORM_IOS || PLATFORM_ANDROID || (UNITY_METRO && UNITY_EDITOR)
+        Assert.GreaterOrEqual(rate, 60, "Refresh rate returned to lower than expected");
+#else
         Assert.GreaterOrEqual(rate, 89, "Refresh rate returned to lower than expected");
-
+#endif
     }
 
     [UnityTest]
