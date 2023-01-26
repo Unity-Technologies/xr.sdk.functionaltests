@@ -36,7 +36,7 @@ public class XrApiTests : XrFunctionalTestBase
     }
 #endif //!UNITY_EDITOR
 
-    [UnityPlatform(exclude = new[] { RuntimePlatform.IPhonePlayer })]
+    [UnityPlatform(exclude = new[] { RuntimePlatform.IPhonePlayer, RuntimePlatform.PS5 })]
     [UnityTest]
     public IEnumerator VerifyXRDevice_userPresence_isPresent()
     {
