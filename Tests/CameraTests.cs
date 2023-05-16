@@ -33,6 +33,7 @@ public class CameraTests : XrFunctionalTestBase
     }
 
     [UnityTest]
+    [BlockOnMagicLeap]
     public IEnumerator VerifyXRDeviceRefreshRate()
     {
         AssertNotUsingEmulation();
@@ -50,6 +51,7 @@ public class CameraTests : XrFunctionalTestBase
     }
 
     [UnityTest]
+    [BlockOnMagicLeap]
     public IEnumerator VerifyXRDisplaySubsystemRefreshRate()
     {
         AssertNotUsingEmulation();

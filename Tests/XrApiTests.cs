@@ -102,6 +102,7 @@ public class XrApiTests : XrFunctionalTestBase
     }
 
     [Test]
+    [BlockOnMagicLeap]
     public void VerifyRefreshRateGreaterThan0()
     {
         var mockHmd = "MockHMDXRSDK";
