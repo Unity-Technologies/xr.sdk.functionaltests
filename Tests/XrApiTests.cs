@@ -38,6 +38,7 @@ public class XrApiTests : XrFunctionalTestBase
 
     [UnityPlatform(exclude = new[] { RuntimePlatform.IPhonePlayer, RuntimePlatform.PS5 })]
     [UnityTest]
+    [BlockOnMagicLeap]
     public IEnumerator VerifyXRDevice_userPresence_isPresent()
     {
 #if XR_SDK
