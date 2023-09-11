@@ -69,11 +69,11 @@ public class PhysicsTests : XrFunctionalTestBase
             if (ray.origin == xrCenterNodePos)
             {
                 raycastFired = true;
-            }
 
-            if (ray.direction != Vector3.zero)
-            {
-                raycastDirection = true;
+                if (ray.direction != Vector3.zero)
+                {
+                    raycastDirection = true;
+                }
             }
 
             if (Cube != null)
@@ -83,7 +83,7 @@ public class PhysicsTests : XrFunctionalTestBase
 
             if (Application.platform != RuntimePlatform.IPhonePlayer)
             {
-                Assert.IsTrue(raycastFired, "Gaze ray failed to leave the cetner eye position");
+                Assert.IsTrue(raycastFired, "Gaze ray failed to leave the center eye position");
                 Assert.IsTrue(raycastDirection, "Gaze direction failed to travel!");
             }
         }

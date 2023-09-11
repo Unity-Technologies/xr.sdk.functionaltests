@@ -6,6 +6,20 @@ Here we provide XR automated test projects for both AR and VR functional testing
 - VR
 -- Including test projects for CrossPlatform and Windows Mixed Reality
 
+## Target XR Displays or XR Assemblies
+*Currently only VR project has the Test Interface scripts (XRDisplay & Assembly) implemented for the Functional Tests*
+The attributes to target either XR Displays or Assemblies can be used to both support or exclude certain targets in order for tests, class, methods, or assemblies. This can be used to have only certain tests run on certain platforms while allowing a simple cross platform test matrix to exist.
+
+### Target a XR Display
+Tag the Class or Method with the attribute `TargetXrDisplays`
+-The attribute takes a string to include or exclude target SDK's 
+-- Example on a Unity Test: `[TargetXrDisplays(exclude = new[] { "MagicLeap-Display" })]`
+
+### Target Certain XR Assemblies 
+Tag the Class, Assembly, or Method with the attribute `ConditionalAssembly`
+-The attribute takes a string to include or exclude target assemblies 
+--Example on a Unity Test: `[ConditionalAssembly(exclude = new[] { "Unity.XR.MockHMD", "Microsoft.MixedReality.OpenXR" })]`
+
 All of these tests use the [Unity Test Framework](https://docs.unity3d.com/Manual/testing-editortestsrunner.html) to excercise their functionality. You can choose to open project in Unity to explore and run from the Test Runner tab, or launch tests from Unity command line using the `runTests` Unity.exe command line option.
 
 Unity command line are full defined here:

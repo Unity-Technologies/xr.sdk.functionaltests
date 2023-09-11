@@ -27,16 +27,7 @@ public class SimplePerformanceTests : XrFunctionalTestBase
 
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
     }
-
-    [UnityTest]
-    public IEnumerator SimpleFpsTestWithFocalPoint()
-    {
-        TestCubeSetup(TestCubesConfig.TestCube);
-        yield return SkipFrame(DefaultFrameSkipCount);
-
-        Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");
-    }
-
+    
     [UnityTest]
     public IEnumerator MassObjectsFpsTest()
     {

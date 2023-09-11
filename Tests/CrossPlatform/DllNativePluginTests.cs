@@ -60,13 +60,16 @@ public class DllNativePluginTests : XrFunctionalTestBase
         spotLight = Object.Instantiate(Resources.Load<Light>("Prefabs/Spotlight"));
         baseSphere = Object.Instantiate(Resources.Load<GameObject>("Prefabs/Sphere"));
 
-        // TODO I don't think this is the way we want to do this. Shouldn't we be trying to find these objects in the scene
-        // before we determine if they are loaded?
-        sceneObjectsLoaded = true;
+        var plane = GameObject.Find(renderPlane.name).scene.IsValid();
+        var light = GameObject.Find(spotLight.name).scene.IsValid();
+        var sphere = GameObject.Find(baseSphere.name).scene.IsValid();
+
+        if(plane && light && sphere)
+            sceneObjectsLoaded = true;
     }
     
     [Test]
-    public void VerifySceneObjectsLoaded()
+    public void VerifyDLLPlugin_SceneObjectsLoaded()
     {
         Assert.IsTrue(sceneObjectsLoaded, "Scene Objects was not created");
     }
@@ -74,7 +77,7 @@ public class DllNativePluginTests : XrFunctionalTestBase
     // NOTE: Skipping on WSA because cannot find RenderingPlugin for UWP
     [UnityPlatform(exclude = new[] {RuntimePlatform.WSAPlayerX64})]
     [UnityTest]
-    public IEnumerator VerifyIsPlaneRendering()
+    public IEnumerator VerifyDLLPlugin_IsPlaneRendering()
     {
         yield return SkipFrame(1);
         Assert.IsTrue(IsPlaneRendering(), "Image rendering couldn't be found");
@@ -84,7 +87,7 @@ public class DllNativePluginTests : XrFunctionalTestBase
     // NOTE: Skipping on WSA because cannot find RenderingPlugin for UWP
     [UnityPlatform(exclude = new[] {RuntimePlatform.WSAPlayerX64})]
     [UnityTest]
-    public IEnumerator VerifyRenderingFps()
+    public IEnumerator VerifyDLLPlugin_RenderingFps()
     {
         yield return SkipFrame(2);
         Assert.AreEqual(0, nonPerformantFrameCount, "Failed to keep every frame inside the target frame time for the tested window");

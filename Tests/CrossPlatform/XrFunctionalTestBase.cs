@@ -64,6 +64,14 @@ public abstract class XrFunctionalTestBase
         }
     }
 
+    protected void AssertNotUsingAcerHMD()
+    {
+        if (Settings != null && Settings.OpenXRFeatures.Contains("MicrosoftMotionControllerProfile"))
+        {
+            Assert.Ignore("This test cannot run on the AcerHMD. Skipping.");
+        }
+    }
+
     protected IEnumerator SkipFrame(int frames)
     {
         Debug.Log($"Skipping {frames} frames.");
