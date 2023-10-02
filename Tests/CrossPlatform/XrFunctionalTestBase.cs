@@ -220,8 +220,8 @@ public abstract class XrFunctionalTestBase
 
     private void CleanUpCameraLights()
     {
-        Object.Destroy(GameObject.Find("camera"));
-        Object.Destroy(GameObject.Find("light"));
+        Object.DestroyImmediate(GameObject.Find("camera"));
+        Object.DestroyImmediate(GameObject.Find("light"));
     }
 
 #if UNITY_EDITOR
