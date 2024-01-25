@@ -102,7 +102,16 @@ public class XrDeviceTests : XrFunctionalTestBase
 #if PLATFORM_IOS || PLATFORM_ANDROID || (UNITY_METRO && UNITY_EDITOR) || UNITY_WSA
         Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
 #else
+#if OPENXR_SDK
+        if(OpenXRUtilities.IsRunningMockRuntime())
+        {
+            Assert.GreaterOrEqual(refreshRate, 59, "Refresh rate returned to lower than expected");
+        }else{
+            Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
+        }
+#else
         Assert.GreaterOrEqual(refreshRate, 89, "Refresh rate returned to lower than expected");
+#endif
 #endif
     }
 

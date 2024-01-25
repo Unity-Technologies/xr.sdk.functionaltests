@@ -9,7 +9,8 @@
         "Unity.WindowsMRAutomation",
         "com.unity.test.metadata-manager",
         "Unity.XR.Management",
-        "Unity.RenderPipelines.Universal.Runtime"
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.XR.OpenXR"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -28,11 +29,11 @@
             "expression": "0.0.1",
             "define": "URP_GRAPHICS"
         },
-	{
+        {
             "name": "com.unity.xr.management",
             "expression": "0.0.1",
             "define": "XR_SDK"
-	},
+        },
         {
             "name": "com.unity.xr.oculus",
             "expression": "0.0.1",
@@ -47,6 +48,11 @@
             "name": "com.unity.xr.windowsmr",
             "expression": "0.0.1",
             "define": "WMR_SDK"
+        },
+        {
+            "name": "com.unity.xr.openxr",
+            "expression": "0.0.1",
+            "define": "OPENXR_SDK"
         }
     ],
     "noEngineReferences": false
