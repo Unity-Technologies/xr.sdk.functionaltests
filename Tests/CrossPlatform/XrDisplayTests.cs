@@ -31,6 +31,10 @@ public class XrDisplayTests : XrFunctionalTestBase
     {
         base.TearDown();
         displays[0].displayFocusChanged -= XrDisplayTests_displayFocusChanged;
+        displays[0].scaleOfAllViewports = 1f;
+        displays[0].scaleOfAllRenderTargets = 1f;
+        displays[0].occlusionMaskScale = 1f;
+        
     }
 
     [UnityTest]
@@ -370,6 +374,102 @@ public class XrDisplayTests : XrFunctionalTestBase
 
             Debug.Log("VerifyXrDisplay_OcclusionMaskScale = " + scale);
             Assert.AreEqual(scale, display.occlusionMaskScale, "Occlusion mask scale scale is not being respected");
+        } while (scale < scaleLimit);
+    }
+
+    [UnityTest]
+    public IEnumerator VerifyXrDisplay_ScaleOfAllViewports()
+    {
+        AssertNotUsingEmulation();
+        yield return new WaitForSeconds(1f);
+
+         SubsystemManager.GetInstances(displays);
+
+        if (displays.Count <= 0)
+            Assert.Ignore("Couldn't find XRDisplay Subsystem");
+
+        var display = displays[0];
+        var tolerance = .005;
+
+        // Arrange
+        var expRenderViewPortScale = 1f;
+        // Act
+        display.scaleOfAllViewports = expRenderViewPortScale;
+        // Assert
+        var actRenderViewPortScale = display.scaleOfAllViewports;
+        Assert.AreEqual(
+            expRenderViewPortScale,
+            actRenderViewPortScale,
+            tolerance,
+            string.Format("Expected display.scaleOfAllViewports to {0}, but is {1}", expRenderViewPortScale,
+                actRenderViewPortScale));
+
+        yield return new WaitForSeconds(1f);
+
+        // Arrange
+        expRenderViewPortScale = 0.7f;
+        // Act
+        display.scaleOfAllViewports = expRenderViewPortScale;
+        // Assert
+        actRenderViewPortScale = display.scaleOfAllViewports;
+        Assert.AreEqual(
+            expRenderViewPortScale,
+            actRenderViewPortScale,
+            tolerance,
+            string.Format("Expected display.scaleOfAllViewports to {0}, but is {1}", expRenderViewPortScale,
+                actRenderViewPortScale));
+
+        yield return new WaitForSeconds(1f);
+
+        // Arrange
+        expRenderViewPortScale = 0.5f;
+        // Act
+        display.scaleOfAllViewports = expRenderViewPortScale;
+        // Assert
+        actRenderViewPortScale = display.scaleOfAllViewports;
+        Assert.AreEqual(
+            expRenderViewPortScale,
+            actRenderViewPortScale,
+            tolerance,
+            string.Format("Expected display.scaleOfAllViewports to {0}, but is {1}", expRenderViewPortScale,
+                actRenderViewPortScale));
+    }
+
+
+    [UnityTest]
+    
+    public IEnumerator VerifyXrDisplay__ScaleOfAllRenderTargets()
+    {
+        yield return SkipFrame(DefaultFrameSkipCount);
+
+        SubsystemManager.GetInstances(displays);
+
+        if (displays.Count <= 0)
+            Assert.Ignore("Couldn't find XRDisplay Subsystem");
+
+        var display = displays[0];
+
+        var scale = 0.1f;
+        var scaleIncrement = 0.1f;
+        var scaleLimit = 2f;
+
+        do
+        {
+            scale += scaleIncrement;
+
+            // I guess because of float math, incrementing the scale was also adding just a little bit more 
+            // when 1.0 was reached the value was 1.000000012 and it was too much for the AreEqual assert.
+            // so round off the extra bit.
+            scale = (float)Math.Round((double)scale, 3);
+
+            display.scaleOfAllRenderTargets = scale;
+
+
+            yield return new WaitForSeconds(1f);
+
+            Debug.Log("VerifyScaleOfAllRenderTargets = " + scale);
+            Assert.AreEqual(scale, display.scaleOfAllRenderTargets,
+                "Eye texture resolution scale is not being respected");
         } while (scale < scaleLimit);
     }
 }
