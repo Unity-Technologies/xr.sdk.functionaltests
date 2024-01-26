@@ -1,8 +1,4 @@
-
-
-
 #if URP_GRAPHICS
-
 using System;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -16,7 +12,6 @@ using System.IO;
 public class URPAPITests : XrFunctionalTestBase
 {
  
-
     [SetUp]
     public override void SetUp()
     {
@@ -26,11 +21,13 @@ public class URPAPITests : XrFunctionalTestBase
     [TearDown]
     public override void TearDown()
     {
-
+        var rpAsset = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
+        var urpAsset = (UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset)rpAsset;
+        urpAsset.renderScale = 1f;
         base.TearDown();
     }
-        [UnityTest]
-        
+    
+    [UnityTest] 
     public IEnumerator VerifyURPAPI_AdjustRenderScale()
     {
         yield return SkipFrame(DefaultFrameSkipCount);
@@ -39,10 +36,8 @@ public class URPAPITests : XrFunctionalTestBase
         var scaleIncrement = 0.1f;
         var scaleLimit = 2f;
 
-
         var rpAsset = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
         var urpAsset = (UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset)rpAsset;
-
 
         do
         {
@@ -55,7 +50,6 @@ public class URPAPITests : XrFunctionalTestBase
 
             urpAsset.renderScale = scale;
 
-
             yield return new WaitForSeconds(1f);
 
             Debug.Log("VerifyRenderScale = " + scale);
@@ -63,7 +57,5 @@ public class URPAPITests : XrFunctionalTestBase
                 "Render Resolution scale is not being respected");
         } while (scale < scaleLimit);
     }
-
-   
 }
 #endif
