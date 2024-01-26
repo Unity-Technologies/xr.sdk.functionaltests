@@ -110,7 +110,7 @@ public class XrSettingsTests : XrFunctionalTestBase
     public IEnumerator VerifyXrSettings_AdjustRenderViewportScale()
     {
         AssertNotUsingEmulation();
-        yield return SkipFrame(DefaultFrameSkipCount);
+        yield return new WaitForSeconds(1f);
         var tolerance = .005;
 
         // Arrange
@@ -126,6 +126,8 @@ public class XrSettingsTests : XrFunctionalTestBase
             string.Format("Expected XRSettings.renderViewPortScale to {0}, but is {1}", expRenderViewPortScale,
                 actRenderViewPortScale));
 
+        yield return new WaitForSeconds(1f);
+
         // Arrange
         expRenderViewPortScale = 0.7f;
         // Act
@@ -138,6 +140,8 @@ public class XrSettingsTests : XrFunctionalTestBase
             tolerance,
             string.Format("Expected XRSettings.renderViewPortScale to {0}, but is {1}", expRenderViewPortScale,
                 actRenderViewPortScale));
+
+        yield return new WaitForSeconds(1f);
 
         // Arrange
         expRenderViewPortScale = 0.5f;
@@ -162,11 +166,6 @@ public class XrSettingsTests : XrFunctionalTestBase
         var scaleIncrement = 0.1f;
         var scaleLimit = 2f;
 
-#if URP_GRAPHICS
-        var rpAsset = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
-        var urpAsset = (UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset)rpAsset;
-#endif
-
         do
         {
             scale += scaleIncrement;
@@ -176,13 +175,9 @@ public class XrSettingsTests : XrFunctionalTestBase
             // so round off the extra bit.
             scale = (float)Math.Round((double)scale, 3);
 
-#if URP_GRAPHICS
-            urpAsset.renderScale = scale;
-#else
             XRSettings.eyeTextureResolutionScale = scale;
-#endif
 
-            yield return SkipFrame(DefaultFrameSkipCount);
+            yield return new WaitForSeconds(1f);
 
             Debug.Log("VerifyAdjustEyeTextureResolutionScale = " + scale);
             Assert.AreEqual(scale, XRSettings.eyeTextureResolutionScale,
