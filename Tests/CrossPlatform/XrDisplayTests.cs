@@ -74,7 +74,16 @@ public class XrDisplayTests : XrFunctionalTestBase
         Assert.GreaterOrEqual(rate, 60, "Refresh rate returned to lower than expected");
 #else
         Assert.IsTrue(gotrate);
+#if OPENXR_SDK
+        if(OpenXRUtilities.IsRunningMockRuntime())
+        {
+            Assert.GreaterOrEqual(rate, 59, "Refresh rate returned to lower than expected");
+        }else{
+            Assert.GreaterOrEqual(rate, 89, "Refresh rate returned to lower than expected");
+        }
+#else
         Assert.GreaterOrEqual(rate, 89, "Refresh rate returned to lower than expected");
+#endif
 #endif
     }
 
