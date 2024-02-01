@@ -106,6 +106,7 @@ public class XrSettingsTests : XrFunctionalTestBase
         Assert.AreNotEqual(dimension, TextureDimension.Unknown, "deviceEyeTextureDimension is Unknown");
     }
 
+    [UnityPlatform(exclude = new[] { Unity.XR.MetaOpenXR })]
     [UnityTest]
     public IEnumerator VerifyXrSettings_AdjustRenderViewportScale()
     {
@@ -157,6 +158,7 @@ public class XrSettingsTests : XrFunctionalTestBase
                 actRenderViewPortScale));
     }
     
+    [UnityPlatform(exclude = new[] { Unity.XR.MetaOpenXR })]
     [UnityTest]
     public IEnumerator VerifyXrSettings_AdjustEyeTextureResolutionScale()
     {
