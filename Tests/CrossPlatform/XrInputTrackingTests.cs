@@ -5,8 +5,7 @@ using System.Collections;
 using UnityEngine.XR;
 using System.Collections.Generic;
 using System.Linq;
-using static IXRDisplayInterface;
-using static IAssemblyInterface;
+using Unity.XRTesting;
 
 [ConditionalAssembly(exclude = new []{"Unity.XR.MockHMD"/*, "Unity.XR.Management" */})]
 internal class XrInputTrackingTests : XrFunctionalTestBase

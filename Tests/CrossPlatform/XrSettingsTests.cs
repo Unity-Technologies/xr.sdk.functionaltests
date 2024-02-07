@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
-using static IXRDisplayInterface;
+using Unity.XRTesting;
+
 #if XR_SDK
 using UnityEngine.XR.Management;
 #endif //XR_SDK
