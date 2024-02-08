@@ -16,10 +16,14 @@ public class AudioSourceTests : XrFunctionalTestBase
     {
         base.SetUp();
         TestCubeSetup(TestCubesConfig.TestCube);
+        Debug.Log("Setting up AudioSourceTests");
+
         Cube.AddComponent<AudioSource>();
         Cube.GetComponent<AudioSource>().clip = Resources.Load("Audio/FOA_speech_ambiX", typeof(AudioClip)) as AudioClip;
 
         audioSource = Cube.GetComponent<AudioSource>();
+        Debug.Log($"Audio Source Value {audioSource}");
+
         Camera.AddComponent<AudioListener>();
     }
 
