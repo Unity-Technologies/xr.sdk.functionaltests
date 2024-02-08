@@ -342,7 +342,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         Assert.IsFalse(display.contentProtectionEnabled, "Didn't set the content protection correctly");
     }
 
-    [UnityPlatform(exclude = new[] { Unity.XR.MetaOpenXR })]
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     public IEnumerator VerifyXrDisplay_OcclusionMaskScale()
     {
@@ -377,7 +377,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         } while (scale < scaleLimit);
     }
 
-    [UnityPlatform(exclude = new[] { Unity.XR.MetaOpenXR })]
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     public IEnumerator VerifyXrDisplay_ScaleOfAllViewports()
     {
@@ -437,7 +437,7 @@ public class XrDisplayTests : XrFunctionalTestBase
     }
 
 
-    [UnityPlatform(exclude = new[] { Unity.XR.MetaOpenXR })]
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     
     public IEnumerator VerifyXrDisplay__ScaleOfAllRenderTargets()

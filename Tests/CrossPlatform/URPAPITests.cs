@@ -27,7 +27,7 @@ public class URPAPITests : XrFunctionalTestBase
         base.TearDown();
     }
     
-    [UnityPlatform(exclude = new[] { Unity.XR.MetaOpenXR })]
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest] 
     public IEnumerator VerifyURPAPI_AdjustRenderScale()
     {
