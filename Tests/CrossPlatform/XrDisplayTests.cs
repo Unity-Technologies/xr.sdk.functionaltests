@@ -434,9 +434,8 @@ public class XrDisplayTests : XrFunctionalTestBase
                 actRenderViewPortScale));
     }
 
-
+    [Ignore("Scale isn't being set in XRDisplaySubsystems.scaleOfAllRenderTargets while in URP - https://jira.unity3d.com/browse/UUM-63498")]
     [UnityTest]
-    
     public IEnumerator VerifyXrDisplay__ScaleOfAllRenderTargets()
     {
         yield return SkipFrame(DefaultFrameSkipCount);
