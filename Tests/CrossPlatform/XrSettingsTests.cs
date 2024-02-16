@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if URP_GRAPHICS
+
+using System;
 using System.Collections.Generic;
 using System.Collections;
 using NUnit.Framework;
@@ -187,5 +189,5 @@ public class XrSettingsTests : XrFunctionalTestBase
         } while (scale < scaleLimit);
     }
 }
-
+#endif
 

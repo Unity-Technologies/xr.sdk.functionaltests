@@ -512,6 +512,7 @@ public class AudioSourceTests : XrFunctionalTestBase
         yield return SkipFrame(DefaultFrameSkipCount);
 
         var clip  = audioSource.clip;
+
         Assert.AreEqual(audioSource.clip.name, "FOA_speech_ambiX", "bypassReverbZones was not set to true;");
     }
 }

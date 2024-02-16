@@ -17,7 +17,7 @@ public class XrDisplayTests : XrFunctionalTestBase
     public override void SetUp()
     {
         base.SetUp();
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
         displays[0].displayFocusChanged += XrDisplayTests_displayFocusChanged;
     }
 
@@ -63,7 +63,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
         
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -99,7 +99,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         AssertNotUsingAcerHMD();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -115,7 +115,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         AssertNotUsingAcerHMD();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -128,7 +128,7 @@ public class XrDisplayTests : XrFunctionalTestBase
     {
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -144,7 +144,7 @@ public class XrDisplayTests : XrFunctionalTestBase
     {
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -163,7 +163,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         AssertNotUsingAcerHMD();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -177,7 +177,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         //AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -200,7 +200,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         //AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -217,7 +217,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         //AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -239,7 +239,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         //AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -260,7 +260,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         //AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -278,7 +278,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         //AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -299,7 +299,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         //AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -326,7 +326,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         //AssertNotUsingEmulation();
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -348,7 +348,7 @@ public class XrDisplayTests : XrFunctionalTestBase
     {
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -384,7 +384,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         AssertNotUsingEmulation();
         yield return new WaitForSeconds(1f);
 
-         SubsystemManager.GetInstances(displays);
+         SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
@@ -444,7 +444,7 @@ public class XrDisplayTests : XrFunctionalTestBase
     {
         yield return SkipFrame(DefaultFrameSkipCount);
 
-        SubsystemManager.GetInstances(displays);
+        SubsystemManager.GetSubsystems(displays);
 
         if (displays.Count <= 0)
             Assert.Ignore("Couldn't find XRDisplay Subsystem");
