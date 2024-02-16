@@ -32,7 +32,7 @@ public interface IXRDisplayInterface
         public void ApplyToTest(Test test)
         {
             displays = new List<XRDisplaySubsystem>();
-            SubsystemManager.GetSubsystems(displays);
+            SubsystemManager.GetInstances(displays);
 
             foreach (var display in displays)
             {

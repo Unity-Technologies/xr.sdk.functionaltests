@@ -1,6 +1,4 @@
-﻿#if URP_GRAPHICS
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections;
 using NUnit.Framework;
@@ -9,6 +7,8 @@ using UnityEngine.Rendering;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
 using static IXRDisplayInterface;
+using static IAssemblyInterface;
+
 #if XR_SDK
 using UnityEngine.XR.Management;
 #endif //XR_SDK
@@ -108,7 +108,7 @@ public class XrSettingsTests : XrFunctionalTestBase
         Assert.AreNotEqual(dimension, TextureDimension.Unknown, "deviceEyeTextureDimension is Unknown");
     }
 
-    [ConditonalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     public IEnumerator VerifyXrSettings_AdjustRenderViewportScale()
     {
@@ -189,5 +189,4 @@ public class XrSettingsTests : XrFunctionalTestBase
         } while (scale < scaleLimit);
     }
 }
-#endif
 
