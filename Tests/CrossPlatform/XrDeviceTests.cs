@@ -3,8 +3,8 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
-using static IXRDisplayInterface;
-using static IAssemblyInterface;
+using Unity.XRTesting;
+
 #if XR_SDK
 using UnityEngine.XR.Management;
 #endif //XR_SDK
@@ -103,7 +103,7 @@ public class XrDeviceTests : XrFunctionalTestBase
         Assert.GreaterOrEqual(refreshRate, 60, "Refresh rate returned to lower than expected");
 #else
 #if OPENXR_SDK
-        if(OpenXRUtilities.IsRunningMockRuntime())
+        if(XRTestContext.Adapter.IsFeatureEnabled("mockruntime"))
         {
             Assert.GreaterOrEqual(refreshRate, 59, "Refresh rate returned to lower than expected");
         }else{

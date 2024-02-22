@@ -7,7 +7,7 @@ Here we provide XR automated test projects for both AR and VR functional testing
 -- Including test projects for CrossPlatform and Windows Mixed Reality
 
 ## Target XR Displays or XR Assemblies
-*Currently only VR project has the Test Interface scripts (XRDisplay & Assembly) implemented for the Functional Tests*
+*Test Interface for fitlering XRDisplay & Assemblies*
 The attributes to target either XR Displays or Assemblies can be used to both support or exclude certain targets in order for tests, class, methods, or assemblies. This can be used to have only certain tests run on certain platforms while allowing a simple cross platform test matrix to exist.
 
 ### Target a XR Display

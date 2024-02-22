@@ -10,7 +10,8 @@
         "com.unity.test.metadata-manager",
         "Unity.XR.Management",
         "Unity.RenderPipelines.Universal.Runtime",
-        "Unity.XR.OpenXR"
+        "Unity.XR.OpenXR",
+        "Unity.XRTesting"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
