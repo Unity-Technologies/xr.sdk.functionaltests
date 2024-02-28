@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 using UnityEngine.TestTools;
 using UnityEngine.XR;
 using Unity.XRTesting;
-using static IAssemblyInterface;
 
 #if XR_SDK
 using UnityEngine.XR.Management;
