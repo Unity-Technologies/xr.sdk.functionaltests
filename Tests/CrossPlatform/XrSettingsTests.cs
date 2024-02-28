@@ -107,6 +107,7 @@ public class XrSettingsTests : XrFunctionalTestBase
         Assert.AreNotEqual(dimension, TextureDimension.Unknown, "deviceEyeTextureDimension is Unknown");
     }
 
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     public IEnumerator VerifyXrSettings_AdjustRenderViewportScale()
     {
@@ -157,8 +158,8 @@ public class XrSettingsTests : XrFunctionalTestBase
             string.Format("Expected XRSettings.renderViewPortScale to {0}, but is {1}", expRenderViewPortScale,
                 actRenderViewPortScale));
     }
-
     [Ignore("Scale isn't being set in XRSettings.eyeTextureResolutionScale while in URP - https://jira.unity3d.com/browse/UUM-63498")]
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     public IEnumerator VerifyXrSettings_AdjustEyeTextureResolutionScale()
     {
@@ -187,5 +188,4 @@ public class XrSettingsTests : XrFunctionalTestBase
         } while (scale < scaleLimit);
     }
 }
-
 

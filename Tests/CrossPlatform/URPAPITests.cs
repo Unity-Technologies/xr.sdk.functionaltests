@@ -5,6 +5,7 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
 using Object = UnityEngine.Object;
+using Unity.XRTesting;
 #if !PLATFORM_IOS && !PLATFORM_ANDROID
 using System.IO;
 #endif
@@ -27,6 +28,7 @@ public class URPAPITests : XrFunctionalTestBase
         base.TearDown();
     }
     
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest] 
     public IEnumerator VerifyURPAPI_AdjustRenderScale()
     {

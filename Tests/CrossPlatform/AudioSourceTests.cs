@@ -16,6 +16,7 @@ public class AudioSourceTests : XrFunctionalTestBase
     {
         base.SetUp();
         TestCubeSetup(TestCubesConfig.TestCube);
+
         Cube.AddComponent<AudioSource>();
         Cube.GetComponent<AudioSource>().clip = Resources.Load("Audio/FOA_speech_ambiX", typeof(AudioClip)) as AudioClip;
 
@@ -508,6 +509,7 @@ public class AudioSourceTests : XrFunctionalTestBase
         yield return SkipFrame(DefaultFrameSkipCount);
 
         var clip  = audioSource.clip;
+
         Assert.AreEqual(audioSource.clip.name, "FOA_speech_ambiX", "bypassReverbZones was not set to true;");
     }
 }

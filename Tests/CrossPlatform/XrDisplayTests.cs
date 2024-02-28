@@ -341,7 +341,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         Assert.IsFalse(display.contentProtectionEnabled, "Didn't set the content protection correctly");
     }
 
-
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     public IEnumerator VerifyXrDisplay_OcclusionMaskScale()
     {
@@ -376,6 +376,7 @@ public class XrDisplayTests : XrFunctionalTestBase
         } while (scale < scaleLimit);
     }
 
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     public IEnumerator VerifyXrDisplay_ScaleOfAllViewports()
     {
@@ -435,6 +436,7 @@ public class XrDisplayTests : XrFunctionalTestBase
     }
 
     [Ignore("Scale isn't being set in XRDisplaySubsystems.scaleOfAllRenderTargets while in URP - https://jira.unity3d.com/browse/UUM-63498")]
+    [ConditionalAssembly(exclude = new[] { "Unity.XR.MetaOpenXR" })]
     [UnityTest]
     public IEnumerator VerifyXrDisplay__ScaleOfAllRenderTargets()
     {
